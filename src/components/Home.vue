@@ -28,7 +28,7 @@
           {name: 'RPC Node', type: 'Smartlink'},
           {name: 'RPC Node', type: 'Cryptonomic'},
           {name: 'RPC Node', type: 'Giganode'},
-          {name: 'RPC Node', type: 'https://...'}
+          {name: 'Add New Node', type: 'https://...'}
         ]
       }
     }
