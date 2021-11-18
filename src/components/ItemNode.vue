@@ -6,9 +6,9 @@
     <div>
       <b>{{ name }}</b>
     </div>
-    <div>
-      <img v-if="icon" v-bind:src="icon" />
-      <span>{{ type }}</span>
+    <div class="icon">
+      <img v-if="icon" v-bind:src="icon" width=30 />
+      <span style="margin-left: 10px">{{ type }}</span>
     </div>
   </div>
 </template>
@@ -51,15 +51,31 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  opacity: 0.9;
-  background-color: rgb(102, 69, 138);
+  background-color: rgb(58, 59, 82);
   border-radius: 20px;
   color: white;
   padding: 40px;
   margin: 10px;
 }
 .active {
-    border: 2px solid tomato;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.active::before {
+  content:"";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  background: linear-gradient(90deg, orange, #5e54d0);
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border-radius: 22px;
+  transform: translateZ(-1px);
+}
+.icon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 </style>
 
