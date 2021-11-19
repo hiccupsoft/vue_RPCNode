@@ -6,8 +6,6 @@ import * as getters from './getters'
 Vue.use(Vuex)
 
 const defaultState = {
-  topics: [],
-  count: 0,
   clickedItem: null
 }
 
@@ -17,17 +15,6 @@ const inBrowser = typeof window !== 'undefined'
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
-  TOPICS_LIST: (state, topics) => {
-    state.topics = topics
-  },
-
-  INCREMENT: (state) => {
-    state.count++
-  },
-
-  DECREMENT: (state) => {
-    state.count--
-  },
 
   CLICKNODE: (state, itemNum) => {
     state.clickedItem = itemNum
