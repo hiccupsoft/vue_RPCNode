@@ -7,15 +7,17 @@
                 :name="item.name" 
                 :type="item.type" 
                 :icon="item.icon" 
+                :rpcUrl="item.rpcUrl"
                 :id="key"> 
       </ItemNode>
     </div>
     <div style="flex: 1">Changing node can improve stability and speed when the network is saturate</div>
-    <button class="button" style="flex: 1">Confirm</button>
+    <button @click="connectNode" class="button" style="flex: 1">Confirm</button>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import ItemNode from './ItemNode'
 
   export default {
@@ -26,11 +28,19 @@
       return {
         childrenData: [
           {name: 'RPC Node', type: 'Smartlink', icon: 'https://user-images.githubusercontent.com/40233733/142332001-b991a843-b17e-4bc6-a288-84d1916d4db5.png'},
-          {name: 'RPC Node', type: 'Cryptonomic', icon: 'https://user-images.githubusercontent.com/40233733/142332005-1b2e9668-3096-433f-a27b-d9a82215c247.png'},
-          {name: 'RPC Node', type: 'Giganode', icon: 'https://user-images.githubusercontent.com/40233733/142332007-3048d688-69b4-4842-a608-05a5134715f4.png'},
+          {name: 'RPC Node', type: 'Cryptonomic', icon: 'https://user-images.githubusercontent.com/40233733/142332005-1b2e9668-3096-433f-a27b-d9a82215c247.png', rpcUrl: 'https://tezos-prod.cryptonomic-infra.tech/chains/main/blocks/head'},
+          {name: 'RPC Node', type: 'Giganode', icon: 'https://user-images.githubusercontent.com/40233733/142332007-3048d688-69b4-4842-a608-05a5134715f4.png', rpcUrl: 'https://mainnet-tezos.giganode.io/chains/main/blocks'},
           {name: 'Add New Node', type: 'https://...'}
         ]
       }
+    },
+    methods: {
+      connectNode: function() {
+        this.$store.dispatch('clickedNode', this.rpcUrl)
+      }
+    },
+    computed: {
+      ...mapGetters({ rpcUrl: 'getSelectedRPC', rspInstance: 'getSelectedRPC' })
     }
   }
 </script>

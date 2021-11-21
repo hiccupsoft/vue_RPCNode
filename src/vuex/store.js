@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as getters from './getters'
+import * as actions from './actions/action-RPCnode'
+import * as getters from './getters/getter-RPCnode'
 
 Vue.use(Vuex)
 
 const defaultState = {
-  clickedItem: null
+  clickedItem: null,
+  RPCNodeUrl: '',
+  RPCInstance: null
 }
 
 const inBrowser = typeof window !== 'undefined'
@@ -16,8 +18,13 @@ const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
 
-  CLICKNODE: (state, itemNum) => {
-    state.clickedItem = itemNum
+  SELECTNODE: (state, object) => {
+    state.clickedItem = object.itemNum
+    state.RPCNodeUrl = object.rpcUrl
+  },
+  // eslint-disable-next-line no-unused-vars
+  CONNECTRPC: (state, instance) => {
+    state.RPCInstance = instance;
   }
 }
 

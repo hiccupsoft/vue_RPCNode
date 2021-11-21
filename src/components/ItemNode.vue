@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[ selected === id ? 'active item-container': 'item-container']"
-    @click="clickedNode(id)"
+    @click="clickedNode(id, rpcUrl)"
   >
     <div>
       <b>{{ name }}</b>
@@ -32,12 +32,15 @@ export default {
     },
     icon: {
       attributes: String
+    },
+    rpcUrl: {
+      attributes: String
     }
   },
   methods: {
     // ...mapActions(['clickedNode']),
-    clickedNode: function (id) {
-      this.$store.dispatch('clickedNode', id)
+    clickedNode: function (id, rpcUrl) {
+      this.$store.dispatch('selectedNode', {id, rpcUrl})
     }
   },
   computed: {
